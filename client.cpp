@@ -13,7 +13,7 @@ using namespace std;
 #define BUF_SIZE 64
 
 struct Med {
-    char name[32];  // Увеличим до 32 для совместимости
+    char name[32];
     int weight;
     int height;
 };
@@ -59,7 +59,6 @@ int main() {
             cout << "Fill:\n Name, height (cm), weight (kg)\n";
             Med M;
             
-            // Читаем имя (до 31 символа для безопасности)
             cin.ignore();
             cout << "Name: ";
             cin.getline(M.name, 32);
@@ -70,10 +69,8 @@ int main() {
             cout << "Weight (kg): ";
             cin >> M.weight;
             
-            // Отправляем структуру
             send(s, (const char*)&M, sizeof(Med), 0);
-            
-            // Получаем результат
+
             recv(s, (char*)&k, sizeof(int), 0);
             cout << "Body mass index: " << k << endl;
         }
